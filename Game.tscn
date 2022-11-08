@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Key/key.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Assets/315844__gneube__zombie-snarl.wav" type="AudioStream" id=6]
 [ext_resource path="res://Assets/341695__projectsu012__coins-1.wav" type="AudioStream" id=7]
 [ext_resource path="res://Maze/Maze.gd" type="Script" id=8]
+[ext_resource path="res://Minimap/Minimap.gd" type="Script" id=9]
+[ext_resource path="res://Assets/marker.png" type="Texture" id=10]
 
 [sub_resource type="SphereShape" id=6]
 radius = 0.5
@@ -76,5 +78,28 @@ stream = ExtResource( 6 )
 [node name="Menu" parent="UI" instance=ExtResource( 4 )]
 pause_mode = 2
 visible = false
+
+[node name="VP" type="Control" parent="UI"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_clip_content = true
+
+[node name="Background" type="ColorRect" parent="UI/VP"]
+margin_right = 200.0
+margin_bottom = 200.0
+color = Color( 0.129412, 0.74902, 0.560784, 1 )
+
+[node name="Map_Container" type="Node2D" parent="UI/VP"]
+position = Vector2( 100, 100 )
+
+[node name="Minimap" type="Node2D" parent="UI/VP/Map_Container"]
+position = Vector2( -100, -100 )
+scale = Vector2( 0.25, 0.25 )
+script = ExtResource( 9 )
+
+[node name="Player_Indicator" type="Sprite" parent="UI/VP"]
+position = Vector2( 100, 100 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 10 )
 
 [connection signal="body_entered" from="Maze/Exit" to="Maze/Exit" method="_on_Exit_body_entered"]
