@@ -9,6 +9,10 @@ var mouse_range = 1.2
 
 var velocity = Vector3()
 
+onready var RC = $Pivot/RayCast
+onready var flash = $Pivot/Blaster/Flash
+onready var Decal = preload("res://Player/Decal.tscn")
+
 func get_input():
 	var input_dir = Vector3()
 	if Input.is_action_pressed("forward"):
@@ -35,3 +39,15 @@ func _physics_process(delta):
 	velocity.x = desired_velocity.x
 	velocity.z = desired_velocity.z
 	velocity = move_and_slide(velocity, Vector3.UP, true)
+	
+	if Input.is_action_just_pressed("shoot") and !flash.visible:
+		flash.shoot()
+		if RC.is_colliding():
+			var c = RC.get_collider()
+			var decal = Decal.instance()
+			RC.get_collider().add_child(decal)
+			decal.global_transform.origin = RC.get_collision_point()
+			decal.look_at(RC.get_collision_point() + RC.get_collision_normal(), Vector3.UP)
+#			print(c.name)
+			if c.is_in_group("Enemy"):
+				c.queue_free()
