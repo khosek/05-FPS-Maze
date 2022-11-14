@@ -13,4 +13,5 @@ func _on_key_body_entered(body):
 			if sound != null:
 				sound.playing = true
 			exit.unlock()
+			Global.add_score(15)
 			queue_free()

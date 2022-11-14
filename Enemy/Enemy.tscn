@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Robot.tres" type="Material" id=3]
 
 [sub_resource type="BoxShape" id=7]
-extents = Vector3( 0.6, 1.2, 0.3 )
+extents = Vector3( 0.55, 1.2, 0.25 )
 
 [sub_resource type="SphereShape" id=8]
 radius = 3.0
@@ -150,6 +150,11 @@ material/0 = ExtResource( 3 )
 [node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
 shape = SubResource( 7 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.3 )
+enabled = true
+cast_to = Vector3( 0, 0, -25 )
 
 [connection signal="body_entered" from="Sound_Area" to="." method="_on_Sound_Area_body_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]

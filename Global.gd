@@ -6,6 +6,8 @@ var inputs = ["left","right","forward","back"]
 
 var menu = null
 
+var score = 0
+
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	load_input()
@@ -18,10 +20,12 @@ func _unhandled_input(_event):
 			if not menu.visible:
 				get_tree().paused = true
 				menu.show()
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			else:
 				save_input()
 				get_tree().paused = false
 				menu.hide()
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func load_input():
 	var error = save_file.load(SAVE_PATH)
@@ -40,3 +44,9 @@ func save_input():
 		for a in actions:
 			save_file.set_value("Inputs", i, a)
 	save_file.save(SAVE_PATH)
+
+func add_score(s):
+	score += s
+
+func reset_score():
+	score = 0

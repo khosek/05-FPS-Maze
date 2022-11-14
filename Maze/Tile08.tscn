@@ -55,3 +55,8 @@ use_collision = true
 height = 3.0
 depth = 0.1
 material = SubResource( 4 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="West"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1.19209e-07 )
+operation = 2
+radius = 0.6

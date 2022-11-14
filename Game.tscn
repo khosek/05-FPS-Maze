@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Enemy/Enemies.gd" type="Script" id=2]
 [ext_resource path="res://Player/Blaster.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/InputRemapMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/315844__gneube__zombie-snarl.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/mixkit-unknown-technology-chirp-pattern-3125.wav" type="AudioStream" id=6]
 [ext_resource path="res://Assets/341695__projectsu012__coins-1.wav" type="AudioStream" id=7]
 [ext_resource path="res://Maze/Maze.gd" type="Script" id=8]
 [ext_resource path="res://Minimap/Minimap.gd" type="Script" id=9]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Player/Flash.gd" type="Script" id=11]
 [ext_resource path="res://Assets/muzzle.tres" type="Material" id=12]
 [ext_resource path="res://Assets/muzzleflash.obj" type="ArrayMesh" id=13]
+[ext_resource path="res://Game.gd" type="Script" id=14]
 
 [sub_resource type="CapsuleShape" id=4]
 radius = 0.5
@@ -22,6 +23,7 @@ height = 1.5
 extents = Vector3( 0.5, 0.1, 0.5 )
 
 [node name="Game" type="Spatial"]
+script = ExtResource( 14 )
 
 [node name="Maze" type="Spatial" parent="."]
 script = ExtResource( 8 )
@@ -32,7 +34,7 @@ script = ExtResource( 2 )
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 37.5981, 0, -12.2103 )
 
-[node name="Player" type="KinematicBody" parent="."]
+[node name="Player" type="KinematicBody" parent="." groups=["Player"]]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 1 )
 script = ExtResource( 1 )
 
@@ -76,7 +78,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="RayCast" type="RayCast" parent="Player/Pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0, -1.11013 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.969624 )
 enabled = true
 cast_to = Vector3( 0, 0, -30 )
 
@@ -85,6 +87,7 @@ stream = ExtResource( 7 )
 
 [node name="Robot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -10.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 

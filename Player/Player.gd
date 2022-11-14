@@ -4,7 +4,7 @@ onready var Camera = $Pivot/Camera
 
 var gravity = -30
 var max_speed = 8
-var mouse_sensitivity = 0.002
+var mouse_sensitivity = 0.0015
 var mouse_range = 1.2
 
 var velocity = Vector3()
@@ -50,4 +50,5 @@ func _physics_process(delta):
 			decal.look_at(RC.get_collision_point() + RC.get_collision_normal(), Vector3.UP)
 #			print(c.name)
 			if c.is_in_group("Enemy"):
+				Global.add_score(c.score)
 				c.queue_free()
