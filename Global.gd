@@ -14,8 +14,7 @@ func _ready():
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("menu"):
-		if menu == null:
-			menu = get_node_or_null("/root/Game/UI/Menu")
+		menu = get_node_or_null("/root/Game/UI/Menu")
 		if menu != null:
 			if not menu.visible:
 				get_tree().paused = true
