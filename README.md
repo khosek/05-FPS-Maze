@@ -13,6 +13,10 @@ A 3D first person shooter that takes place within a mze
 Many assets from Kenney.nl
 - Robot asset
 - Blaster asset
+Key sound from Freesound
+Maze textures from cc0textures.com
+Blaster muzzle flash and bullet hole from opengameart
+
 
 ## Future Development
 None
